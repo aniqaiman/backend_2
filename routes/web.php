@@ -11,11 +11,16 @@
 |
  */
 
+Route::group( ['middleware' => ['web'] ], function(){
+
+
 Auth::routes();
 
 // ------------------------------------------- Dashboard ------------------------------------------- //
 
 Route::get('/', 'DashboardController@getDashboard')->name('index');
+
+Route::get('/dashboard', 'DashboardController@getDashboard')->name('index');
 
 // ------------------------------------------- User ------------------------------------------- //
 
@@ -171,3 +176,4 @@ Route::get('inventories/promotions', 'InventoryController@indexPromotions')->nam
 Route::post('send', 'EmailController@send');
 Route::get('playground', 'ApiController@playground');
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+});

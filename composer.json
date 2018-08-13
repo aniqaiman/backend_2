@@ -20,7 +20,7 @@
         "phpmailer/phpmailer": "^6.0",
         "rap2hpoutre/laravel-log-viewer": "^0.14.3",
         "spatie/laravel-cors": "^1.2",
-        "tymon/jwt-auth": "^1.0.0-beta.3@dev",
+        "tymon/jwt-auth": "1.0.0-rc.2",
         "uxweb/sweet-alert": "^1.4",
         "whoops/soap": "^1.0"
     },

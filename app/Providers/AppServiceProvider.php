@@ -19,8 +19,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        if (env('APP_ENV') == 'local') {
-            \URL::forceScheme('http');
+        if (env('APP_ENV') == 'prod') {
+            \URL::forceScheme('https');
         }
 
         /**
