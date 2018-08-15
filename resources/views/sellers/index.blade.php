@@ -81,6 +81,19 @@
 <section class="content">
     <div class="row">
         <div class="col-md-12">
+            @if (Session::has('success'))
+                        <div class="alert alert-success">
+                            <p>
+                                <i class="icon fa fa-check"></i> {{ Session::get('success') }}
+                            </p>
+                        </div>
+                        @elseif (Session::has('error'))
+                        <div class="alert alert-error">
+                            <p>
+                                <i class="icon fa fa-times"></i> {{ Session::get('error') }}
+                            </p>
+                        </div>
+                        @endif
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li>
@@ -157,12 +170,16 @@
                                         </td>
                                         <td class="text-center">
                                             <div class="btn-group-vertical btn-group-sm">
-                                                <a href="{{ route('users.sellers.show', [$seller->id]) }}" class="btn btn-primary">View</a>                                                @if ($seller->status_account === 0)
+                                                <a href="{{ route('users.sellers.show', [$seller->id]) }}" class="btn btn-primary">View</a>                                                
+                                                @if ($seller->status_account === 0)
                                                 <button class="btn btn-success" data-id="{{ $seller->id }}" onclick="activateUser(this)">Activate</button>
-                                                <button class="btn btn-warning" disabled>Deactivate</button> @elseif ($seller->status_account
-                                                === 1)
+                                                <a class="button btn btn" href="{{ route('users.sellers.edit', ['user_id'=> $seller->id]) }}">Edit</a>
+                                                <button class="btn btn-warning" disabled>Deactivate</button> 
+                                                @elseif ($seller->status_account=== 1)
                                                 <button class="btn btn-success" disabled>Activate</button>
-                                                <button class="btn btn-warning" data-id="{{ $seller->id }}" onclick="deactivateUser(this)">Deactivate</button>                                                @endif
+                                                <a class="button btn btn" href="{{ route('users.sellers.edit', ['user_id'=> $seller->id]) }}">Edit</a>
+                                                <button class="btn btn-warning" data-id="{{ $seller->id }}" onclick="deactivateUser(this)">Deactivate</button>                                                
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>

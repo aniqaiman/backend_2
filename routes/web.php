@@ -44,7 +44,7 @@ Route::prefix('users')
         Route::get('sellers/create', 'SellerController@create')->name('sellers.create');
         Route::post('sellers', 'SellerController@store')->name('sellers.store');
         Route::get('sellers/{user_id}', 'SellerController@show')->name('sellers.show');
-        Route::put('sellers/{user_id}', 'SellerController@update')->name('sellers.update');
+        Route::post('sellers/{user_id}', 'SellerController@update')->name('sellers.update');
         Route::delete('sellers/{user_id}', 'SellerController@destroy')->name('sellers.destroy');
         Route::get('sellers/{user_id}/edit', 'SellerController@edit')->name('sellers.edit');
 
@@ -56,7 +56,7 @@ Route::prefix('users')
         Route::get('buyers', 'BuyerController@index')->name('buyers.index');
         Route::post('buyers', 'BuyerController@store')->name('buyers.store');
         Route::get('buyers/create', 'BuyerController@create')->name('buyers.create');
-        Route::put('buyers/{user_id}', 'BuyerController@update')->name('buyers.update');
+        Route::post('buyers/{user_id}', 'BuyerController@update')->name('buyers.update');
         Route::delete('buyers/{user_id}', 'BuyerController@destroy')->name('buyers.destroy');
         Route::get('buyers/{user_id}/edit', 'BuyerController@edit')->name('buyers.edit');
 
