@@ -102,4 +102,24 @@ class SellerController extends Controller
         $seller = User::find($user_id);
         return view('sellers.show', compact('seller'));
     }
+
+    public function updateSeller(Request $request, $seller_id)
+    {
+            $seller = User::where('id', $seller_id)->first();
+            $seller->name = $request->name;
+            $seller->company_name = $request->company_name;
+            $seller->address = $request->address;
+            $seller->mobile_number = $request->mobile_number;
+            $seller->email = $request->email;
+            $seller->bank_name = $request->bank_name;
+            $seller->bank_account_holder_name = $request->bank_account_holder_name;
+            $seller->bank_account_number = $request->bank_account_number;
+            $seller->company_registration_mykad_number = $request->company_registration_mykad_number;
+            $seller->bussiness_hour = $request->bussiness_hour;
+            $seller->driver_license_number = $request->driver_license_number;
+            $seller->lorry_roadtax_expiry = $request->lorry_roadtax_expiry;
+            $seller->lorry_plate_number = $request->lorry_plate_number;
+            $seller->update();
+            return view('sellers.show', compact('seller'));
+    }
 }

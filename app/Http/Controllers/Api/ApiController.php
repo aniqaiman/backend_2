@@ -17,7 +17,7 @@ class ApiController extends Controller
     {
         $credentials = $request->only('company_registration_mykad_number', 'password');
         $token = null;
-
+   
         try {
             if (!$token = JWTAuth::attempt($credentials)) {
                 return response()->json([
@@ -76,7 +76,7 @@ class ApiController extends Controller
         $client = new Client();
         $response = $client->request('POST', 'https://www.google.com/recaptcha/api/siteverify', [
             'form_params' => [
-                'secret' => '6LeYmFIUAAAAAAiDzgP6UdTksJUY5Uumu6CccBPp',
+                'secret' => '6Lf7CmoUAAAAAHBFXm7UIHgBluXT7PutCBUc3rf4',
                 'response' => $request->input('captcha'),
             ],
         ]);
