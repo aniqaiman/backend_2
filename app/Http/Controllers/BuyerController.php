@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Redirect;
 use Session;
 
@@ -68,28 +69,35 @@ class BuyerController extends Controller
         return view('buyers.create');
     }
 
-    public function edit($user_id, Request $request)
+    public function edit($user_id)
     {
-        $buyers = User::where('user_id', $user_id)->first();
-        return view('buyer.editBuyer', compact('buyers'));
+        $buyers = User::find($user_id);
+        return view('buyers.edit', compact('buyers'));
     }
 
-    public function update(Request $request)
+    public function update($user_id, Request $request)
     {
-        if ($request->ajax()) {
-            $buyers = User::where('user_id', $request->user_id)->first();
+        $buyers = User::find($user_id);
+
+        if ($request->hasFile('display_picture')) {
+            Storage::delete($buyers->display_picture);
+            $path = $request->file('display_picture')->store('public/images');
+            $buyers->display_picture = $path; 
+        }
             $buyers->name = $request->name;
             $buyers->company_name = $request->company_name;
-            $buyers->company_reg_ic_number = $request->company_reg_ic_number;
-            $buyers->buss_hour = $request->buss_hour;
+            $buyers->company_registration_mykad_number = $request->company_registration_mykad_number;
+            $buyers->bussiness_hour = $request->bussiness_hour;
             $buyers->address = $request->address;
-            $buyers->phonenumber = $request->phonenumber;
-            $buyers->handphone_number = $request->handphone_number;
+            $buyers->latitude = $request->latitude;
+            $buyers->longitude = $request->longitude;
+            $buyers->mobile_number = $request->mobile_number;
+            $buyers->phone_number = $request->phone_number;
             $buyers->email = $request->email;
-            $buyers->password = bcrypt('$request->password');
             $buyers->save();
-            return response($buyers);
-        }
+
+            return redirect()->route('users.buyers.index')->with('success', 'Buyer info had been updated.');
+        
     }
 
     public function delete($user_id, Request $request)

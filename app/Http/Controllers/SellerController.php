@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Redirect;
 use Session;
 
@@ -62,31 +63,35 @@ class SellerController extends Controller
         return view('sellers.create');
     }
 
-    public function edit($user_id, Request $request)
+    public function edit($user_id)
     {
-        $sellers = User::where('user_id', $user_id)->first();
-        return view('seller.editSeller', compact('sellers'));
+        $sellers = User::find($user_id);
+        return view('sellers.edit', compact('sellers'));
     }
 
-    public function update(Request $request)
+    public function update($user_id, Request $request)
     {
-        if ($request->ajax()) {
-            $sellers = User::where('user_id', $request->user_id)->first();
+        $sellers = User::find($user_id);
+
+        if ($request->hasFile('display_picture')) {
+            Storage::delete($sellers->display_picture);
+            $path = $request->file('display_picture')->store('public/images');
+            $sellers->display_picture = $path; 
+        }
             $sellers->name = $request->name;
             $sellers->company_name = $request->company_name;
-            $sellers->company_reg_ic_number = $request->company_reg_ic_number;
+            $sellers->company_registration_mykad_number = $request->company_registration_mykad_number;
             $sellers->address = $request->address;
             $sellers->latitude = $request->latitude;
             $sellers->longitude = $request->longitude;
-            $sellers->handphone_number = $request->handphone_number;
+            $sellers->mobile_number = $request->mobile_number;
             $sellers->email = $request->email;
-            $sellers->password = bcrypt('$request->password');
             $sellers->bank_name = $request->bank_name;
-            $sellers->bank_acc_holder_name = $request->bank_acc_holder_name;
-            $sellers->bank_acc_number = $request->bank_acc_number;
+            $sellers->bank_account_holder_name = $request->bank_account_holder_name;
+            $sellers->bank_account_number = $request->bank_account_number;
             $sellers->save();
-            return response($sellers);
-        }
+            
+            return redirect()->route('users.sellers.index')->with('success', 'Supplier info had been updated.');
     }
 
     public function delete(Request $request, $user_id)

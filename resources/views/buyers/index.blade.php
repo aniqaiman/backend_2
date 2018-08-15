@@ -79,6 +79,19 @@
 <section class="content">
     <div class="row">
         <div class="col-md-12">
+            @if (Session::has('success'))
+                        <div class="alert alert-success">
+                            <p>
+                                <i class="icon fa fa-check"></i> {{ Session::get('success') }}
+                            </p>
+                        </div>
+                        @elseif (Session::has('error'))
+                        <div class="alert alert-error">
+                            <p>
+                                <i class="icon fa fa-times"></i> {{ Session::get('error') }}
+                            </p>
+                        </div>
+                        @endif
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li>
@@ -157,11 +170,13 @@
                                             @if ($buyer->status_account === 0)
                                             <div class="btn-group-vertical btn-group-sm">
                                                 <button class="btn btn-success" data-id="{{ $buyer->id }}" onclick="activateUser(this)">Activate</button>
+                                                <a class="button btn btn-primary">Edit</a>
                                                 <button class="btn btn-warning" disabled>Deactivate</button>
                                             </div>
                                             @elseif ($buyer->status_account === 1)
                                             <div class="btn-group-vertical btn-group-sm">
                                                 <button class="btn btn-success" disabled>Activate</button>
+                                                <a class="button btn btn-primary" href="{{ route('users.buyers.edit', ['user_id'=> $buyer->id]) }}">Edit</a>
                                                 <button class="btn btn-warning" data-id="{{ $buyer->id }}" onclick="deactivateUser(this)">Deactivate</button>
                                             </div>
                                             @endif
@@ -367,6 +382,7 @@
             }
         });
     }
+
 
 </script>
 @endsection
