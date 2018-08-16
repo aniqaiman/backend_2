@@ -17,6 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('reset-password', 'ResetPasswordController@getResetToken');
 Route::get('auth/user', 'Api\ApiController@getAuthUser');
 Route::get('auth/verify/{token}', 'Api\ApiController@verifyUserEmail');
 
