@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Group;
 use App\Type;
 use App\User;
+use App\Status;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
@@ -42,7 +43,8 @@ class UserController extends Controller
     public function editUser($user_id, Request $request)
     {
         $users = User::where('user_id', $user_id)->first();
-        return view('user.editUser', compact('users'));
+        $status = Status::all();
+        return view('user.editUser', compact('users','status'));
     }
 
     public function updateUser(Request $request)

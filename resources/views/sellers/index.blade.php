@@ -162,22 +162,41 @@
                                         </td>
                                         <td class="text-center">
                                             E-Mail: @if ($seller->status_email === 1)
-                                            <span class="label label-success">Verified</span> @else
-                                            <span class="label label-danger">Unverified</span> @endif
-                                            <br /> Account: @if ($seller->status_account === 1)
-                                            <span class="label label-success">Activated</span> @else
-                                            <span class="label label-danger">Deactivated</span> @endif
+                                            <span class="label label-success">Verified</span> 
+                                            @else
+                                            <span class="label label-danger">Unverified</span> 
+                                            @endif
+                                            <br /> 
+                                            Account: @if ($seller->status_account === 1)
+                                            <span class="label label-success">Activated</span> 
+                                            @else
+                                            <span class="label label-danger">Deactivated</span> 
+                                            @endif
+                                            <br/>
+                                            Profile Picture: @if ($seller->profile_verified == 2)
+                                            <span class="label label-success">Verified</span>
+                                            @else
+                                            <span class="label label-danger">Unverified</span>
+                                            @endif
                                         </td>
                                         <td class="text-center">
                                             <div class="btn-group-vertical btn-group-sm">
                                                 <a href="{{ route('users.sellers.show', [$seller->id]) }}" class="btn btn-primary">View</a>                                                
                                                 @if ($seller->status_account === 0)
                                                 <button class="btn btn-success" data-id="{{ $seller->id }}" onclick="activateUser(this)">Activate</button>
-                                                <a class="button btn btn" href="{{ route('users.sellers.edit', ['user_id'=> $seller->id]) }}">Edit</a>
+                                                    @if($seller->profile_verified == 2)
+                                                    <a class="button btn btn-primary" href="{{ route('users.sellers.edit', ['user_id'=> $seller->id]) }}">Edit</a>
+                                                    @else
+                                                    <a class="button btn btn-danger" href="{{ route('users.sellers.edit', ['user_id'=> $seller->id]) }}">Verify Picture</a>
+                                                    @endif
                                                 <button class="btn btn-warning" disabled>Deactivate</button> 
                                                 @elseif ($seller->status_account=== 1)
                                                 <button class="btn btn-success" disabled>Activate</button>
-                                                <a class="button btn btn" href="{{ route('users.sellers.edit', ['user_id'=> $seller->id]) }}">Edit</a>
+                                                    @if($seller->profile_verified == 2)
+                                                    <a class="button btn btn-primary" href="{{ route('users.sellers.edit', ['user_id'=> $seller->id]) }}">Edit</a>
+                                                    @else
+                                                    <a class="button btn btn-danger" href="{{ route('users.sellers.edit', ['user_id'=> $seller->id]) }}">Verify Picture</a>
+                                                    @endif
                                                 <button class="btn btn-warning" data-id="{{ $seller->id }}" onclick="deactivateUser(this)">Deactivate</button>                                                
                                                 @endif
                                             </div>

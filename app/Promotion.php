@@ -21,6 +21,11 @@ class Promotion extends Model
         return $this->belongsTo('App\Product');
     }
 
+    // public function inventories()
+    // {
+    //     return $this->belongsTo('App\Inventory');
+    // }
+
     public function stock()
     {
         return $this->belongsTo('App\Stock');

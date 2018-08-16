@@ -160,23 +160,42 @@
                                         </td>
                                         <td class="text-center">
                                             E-Mail: @if ($buyer->status_email === 1)
-                                            <span class="label label-success">Verified</span> @else
-                                            <span class="label label-danger">Unverified</span> @endif
-                                            <br /> Account: @if ($buyer->status_account === 1)
-                                            <span class="label label-success">Activated</span> @else
-                                            <span class="label label-danger">Deactivated</span> @endif
+                                            <span class="label label-success">Verified</span> 
+                                            @else
+                                            <span class="label label-danger">Unverified</span> 
+                                            @endif
+                                            <br> 
+                                            Account: @if ($buyer->status_account === 1)
+                                            <span class="label label-success">Activated</span> 
+                                            @else
+                                            <span class="label label-danger">Deactivated</span> 
+                                            @endif
+                                            <br>
+                                            Profile Picture: @if ($buyer->profile_verified == 2)
+                                            <span class="label label-success">Verified</span>
+                                            @else
+                                            <span class="label label-danger">Unverified</span>
+                                            @endif
                                         </td>
                                         <td class="text-center">
                                             @if ($buyer->status_account === 0)
                                             <div class="btn-group-vertical btn-group-sm">
                                                 <button class="btn btn-success" data-id="{{ $buyer->id }}" onclick="activateUser(this)">Activate</button>
-                                                <a class="button btn btn-primary">Edit</a>
+                                                @if($buyer->profile_verified == 2)
+                                                <a class="button btn btn-primary" href="{{ route('users.buyers.edit', ['user_id'=> $buyer->id]) }}">Edit</a>
+                                                @else
+                                                <a class="button btn btn-danger" href="{{ route('users.buyers.edit', ['user_id'=> $buyer->id]) }}">Verify Picture</a>
+                                                @endif
                                                 <button class="btn btn-warning" disabled>Deactivate</button>
                                             </div>
                                             @elseif ($buyer->status_account === 1)
                                             <div class="btn-group-vertical btn-group-sm">
                                                 <button class="btn btn-success" disabled>Activate</button>
+                                                @if($buyer->profile_verified == 2)
                                                 <a class="button btn btn-primary" href="{{ route('users.buyers.edit', ['user_id'=> $buyer->id]) }}">Edit</a>
+                                                @else
+                                                <a class="button btn btn-danger" href="{{ route('users.buyers.edit', ['user_id'=> $buyer->id]) }}">Verify Picture</a>
+                                                @endif
                                                 <button class="btn btn-warning" data-id="{{ $buyer->id }}" onclick="deactivateUser(this)">Deactivate</button>
                                             </div>
                                             @endif

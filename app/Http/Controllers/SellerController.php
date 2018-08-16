@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Redirect;
@@ -66,7 +67,8 @@ class SellerController extends Controller
     public function edit($user_id)
     {
         $sellers = User::find($user_id);
-        return view('sellers.edit', compact('sellers'));
+        $status = Status::all();
+        return view('sellers.edit', compact('sellers','status'));
     }
 
     public function update($user_id, Request $request)
@@ -89,6 +91,7 @@ class SellerController extends Controller
             $sellers->bank_name = $request->bank_name;
             $sellers->bank_account_holder_name = $request->bank_account_holder_name;
             $sellers->bank_account_number = $request->bank_account_number;
+            $sellers->profile_verified = $request->profile_verified;
             $sellers->save();
             
             return redirect()->route('users.sellers.index')->with('success', 'Supplier info had been updated.');
