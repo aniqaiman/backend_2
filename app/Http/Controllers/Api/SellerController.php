@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use JWTAuth;
 use Mail;
+use Carbon\Carbon;
+use Storage;
+use Image;
 
 class SellerController extends Controller
 {
@@ -60,8 +63,8 @@ class SellerController extends Controller
 
     public function update(Request $request)
     {
-        return response()->json(['message' => $request->hasFile('display_picture')], 403);
         $seller = JWTAuth::parseToken()->authenticate();
+        $imagePath = $seller->display_picture;
 
         if ($seller->company_registration_mykad_number !== $request->company_registration_mykad_number
             && User::where('company_registration_mykad_number', $request->company_registration_mykad_number)->exists()) {
@@ -77,9 +80,14 @@ class SellerController extends Controller
             ], 403);
         }
 
-        if ($request->hasFile('display_picture')) {
-            $file = $request->display_picture;
-            $path = $request->display_picture->store('images');
+        if ($request['display_picture'] != "") {
+            Storage::delete($seller->display_picture);
+            $filename = 'image_'.str_replace(' ', '', $request['name']).'_'.Carbon::now().'.jpg';
+            $sellerImagePath = 'seller-image/' . $filename;
+            $image_seller = Image::make($request->display_picture)->orientate()->fit(500);
+            $image_seller = $image_seller->stream();
+            Storage::disk('s3')->put($sellerImagePath, $image_seller->__toString());
+            $imagePath = $sellerImagePath;
         } 
 
         $seller->name = $request->name;
@@ -93,7 +101,7 @@ class SellerController extends Controller
         $seller->bank_name = $request->bank_name;
         $seller->bank_account_holder_name = $request->bank_account_holder_name;
         $seller->bank_account_number = $request->bank_account_number;
-        $seller->display_picture = $path;
+        $seller->display_picture = env('APP_PHOTO_URL').$imagePath;
         $seller->save();
 
         return response()->json([
