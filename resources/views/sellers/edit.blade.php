@@ -55,7 +55,7 @@
                               @if($sellers->display_picture)
                               Current:
                               <br/>
-                              <dd><div class="imageContainer"><img src="{{ env('APP_PHOTO_URL') }}{{$sellers->display_picture}}" class="gridimage"></div></dd>
+                              <dd><div class="imageContainer"><img src="{{$sellers->display_picture}}" class="gridimage"></div></dd>
                               @else
                               Default:
                               <br/>
