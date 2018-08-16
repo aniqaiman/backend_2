@@ -144,7 +144,7 @@
                         <div class="col-sm-9">
                             <select class="form-control" name="profile_verified" id="profile_verified" data-placeholder="Select">
                               @foreach($status as $status)
-                              <option value="{{$status->id}}">{{$status->status}}</option>
+                              <option value="{{$status->id}}" @if($status->id == $buyers->profile_verified) selected @endif>{{$status->status}}</option>
                               @endforeach
                           </select>
                       </div>
@@ -152,11 +152,7 @@
 
               </div>
               <div class="box-footer">
-                @if($buyers->profile_verified == 2)
                 <button type="submit" class="btn btn-primary">Edit Buyer</button>
-                @else
-                <button type="submit" class="btn btn-info">Verify Picture</button>
-                @endif
             </div>
         </form>
     </div>
