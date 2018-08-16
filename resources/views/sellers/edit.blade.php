@@ -55,7 +55,7 @@
                               @if($sellers->display_picture)
                               Current:
                               <br/>
-                              <img src="{{ env('APP_PHOTO_URL') }}{{$sellers->display_picture}}" class="gridimage" />
+                              <dd><div class="imageContainer"><img src="{{ env('APP_PHOTO_URL') }}{{$sellers->display_picture}}" class="gridimage"></div></dd>
                               @else
                               Default:
                               <br/>
@@ -146,14 +146,29 @@
                         </div>
                     </div>
 
-                </div>
-                <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Edit Seller</button>
-                </div>
-            </form>
-        </div>
-        <!-- /.box -->
+                    <div class="form-group">
+                        <label for="profile_verified" class="col-sm-3 control-label">Profile Picture: </label>
+                        <div class="col-sm-9">
+                            <select class="form-control" name="profile_verified" id="profile_verified" data-placeholder="Select">
+                              @foreach($status as $status)
+                              <option value="{{$status->id}}">{{$status->status}}</option>
+                              @endforeach
+                          </select>
+                      </div>
+                  </div>
+
+              </div>
+              <div class="box-footer">
+                @if($sellers->profile_verified == 2)
+                <button type="submit" class="btn btn-primary">Edit Seller</button>
+                @else
+                <button type="submit" class="btn btn-info">Verify Picture</button>
+                @endif
+            </div>
+        </form>
     </div>
+    <!-- /.box -->
+</div>
 </div>
 </section>
 @endsection

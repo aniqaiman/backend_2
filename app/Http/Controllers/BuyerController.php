@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\User;
 use Illuminate\Http\Request;
+use App\Status;
 use Illuminate\Support\Facades\Storage;
 use Redirect;
 use Session;
@@ -72,7 +73,8 @@ class BuyerController extends Controller
     public function edit($user_id)
     {
         $buyers = User::find($user_id);
-        return view('buyers.edit', compact('buyers'));
+        $status = Status::all();
+        return view('buyers.edit', compact('buyers','status'));
     }
 
     public function update($user_id, Request $request)
@@ -94,6 +96,7 @@ class BuyerController extends Controller
             $buyers->mobile_number = $request->mobile_number;
             $buyers->phone_number = $request->phone_number;
             $buyers->email = $request->email;
+            $buyers->profile_verified = $request->profile_verified;
             $buyers->save();
 
             return redirect()->route('users.buyers.index')->with('success', 'Buyer info had been updated.');

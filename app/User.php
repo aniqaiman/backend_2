@@ -39,11 +39,17 @@ class User extends Authenticatable implements JWTSubject
         'status_email',
         'status_account',
         'location_covered',
+        'profile_verified',
     ];
 
     public function group()
     {
         return $this->belongsTo('App\Group');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo('App\Status');
     }
 
     public function lorryCapacity()

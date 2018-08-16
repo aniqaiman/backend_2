@@ -31,7 +31,7 @@ class InventoryController extends Controller
         } else {
             $inventories = Inventory::with('product', 'price', 'orders', 'stocks')
                 ->orderBy('created_at', 'desc')
-                ->get();
+                ->get(); 
         }
 
         return view('inventories.index', compact('inventories', 'filter_date'));
@@ -49,7 +49,8 @@ class InventoryController extends Controller
     }
 
     public function indexPromotions()
-    {
+    {   
+        // $promotions = Promotion::with('product','price','orders','stocks')->get();
         $promotions = Promotion::all();
         return view('inventories.promotions.index', compact('promotions'));
     }

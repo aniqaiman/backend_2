@@ -24,6 +24,11 @@ class Inventory extends Model
         return $this->belongsTo('App\Price');
     }
 
+    // public function promotions()
+    // {
+    //     return $this->belongsTo('App\Promotion');
+    // }
+
     public function orders()
     {
         return $this->belongsToMany('App\Order');

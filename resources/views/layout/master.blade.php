@@ -16,6 +16,13 @@
   border: groove;
 }
 </style>
+
+<style>
+  .imageContainer > img:hover {
+  width: 300px;
+  height: 300px;
+}
+</style>
     {!!Html::style('css/bootstrap.min.css')!!}
     <!-- Font Awesome -->
     {!!Html::style('css/font-awesome.min.css')!!}
