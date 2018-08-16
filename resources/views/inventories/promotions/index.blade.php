@@ -62,7 +62,7 @@
                                             <div class="input-group-addon">kg</div>
                                         </div>
                                     </td>
-                                    <td class="text-center">RM {{ $promo }}</td> 
+                                    <td class="text-center">RM {{ $promo->buy_at_price }}</td> 
                                 </tr>
                                 @endforeach
                             </tbody>

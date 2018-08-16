@@ -1,7 +1,7 @@
 @extends('layout.master') 
 @section('style')
 @endsection
- 
+
 @section('content')
 <section class="content-header">
     <h1>
@@ -68,7 +68,7 @@
                                     </td>
                                     <td>#{{ sprintf("%04s", $inventory->product->id) }}</td>
                                     <td>{{ Carbon\Carbon::parse($inventory->created_at)->format('d/m/Y') }}</td>
-                                    <td>
+                                    <td id="price_{{ $inventory->product->id}}">
                                         {{ $inventory->product->priceValid($inventory->created_at)->seller_price_a }}
                                     </td>
                                     <td>
@@ -150,7 +150,7 @@
                                     <td>
                                         <div class="input-group">
                                             <input type="number" class="demand form-control" data-id="{{ $inventory->product_id }}" value="{{ $inventory->product->demand_a }}"
-                                                style="min-width: 70px;" />
+                                            style="min-width: 70px;" />
                                             <div class="input-group-addon">kg</div>
                                         </div>
                                     </td>
@@ -166,7 +166,7 @@
     </div>
 </section>
 @endsection
- 
+
 @section('script')
 <script>
     $(document).ready(function () {
@@ -206,10 +206,13 @@
         $(".wastage").focusout(function () {
             console.log($(this));
             console.log($(this).attr('id'));
-            $(this).attr('id').split("_")[1]
+            var product_id = $(this).attr('id').split("_")[1]
+            var price = $('#price_'+product_id).html();
+            console.log(price)
             var data = {
                 product_id: $(this).attr('id').split("_")[1],
                 wastage: $(this).val(),
+                price:price
             }
 
             swal({
@@ -234,14 +237,17 @@
 
         });
 
-        $(".promo").focusout(function () {
+        $(".promo").focusout(function () {  
             console.log($(this));
             console.log($(this).attr('id'));
-            $(this).attr('id').split("_")[1]
+            var product_id =  $(this).attr('id').split("_")[1]
+            var price =    $('#price_'+product_id).html();
+            console.log(price)
             var data = {
                 product_id: $(this).attr('id').split("_")[1],
                 quantity: $(this).val(),
-            }
+                price:price
+            } 
 
             swal({
                 title: "",
@@ -249,7 +255,7 @@
                 showConfirmButton: false
             });
 
-            $.ajax("{{ route('products.update.promo') }}", {
+            $.ajax("{{ route('products.update.promo') }}", { 
                 data: data,
                 dataType: "json",
                 error: (jqXHR, textStatus, errorThrown) => {

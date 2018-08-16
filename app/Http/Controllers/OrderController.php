@@ -173,6 +173,7 @@ class OrderController extends Controller
             $newOrder["tonnage"] = DB::table('order_product')->where('order_id', $order->id)->sum('quantity');
             $newOrder["distance"] = $order->distance;
             $newOrder["total_payout"] = $order->distance * 0.2;
+            
 
             array_push($orders, $newOrder);
             array_push($locations, $order->user->latitude . "," . $order->user->longitude);
