@@ -75,6 +75,21 @@ class BuyerController extends Controller
             ], 403);
         }
 
+        if($request->display_picture)
+        {
+            $filename = $buyer->id . '-' . substr(md5($buyer->id . '-' . time()), 0, 15) . '.jpg';
+
+            $path = 'public/images/' . $filename;
+
+            $image_normal = Image::make($request->display_picture)->orientate()->fit(500);
+            $image_normal = $image_normal->stream();
+            
+            Storage::disk('s3')->put($path, $image_normal->__toString());
+
+            $buyer->display_picture = $path;
+            $buyer->profile_verified = 1;
+        }
+
         $buyer->name = $request->name;
         $buyer->company_name = $request->company_name;
         $buyer->company_registration_mykad_number = $request->company_registration_mykad_number;

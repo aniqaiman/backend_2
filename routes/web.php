@@ -11,6 +11,17 @@
 |
  */
 
+// -------------------------------------------Forget Password---------------------------------------------
+
+Route::get('/forgot-password', ['as'=>'forgotPassword', 'uses'=>'ResetPasswordController@getForgotPassword']);
+Route::get('/reset/{email}/{resetCode}',['as'=>'resetPasswordFromEmail','uses'=>'ResetPasswordController@resetPasswordFromEmail']);
+Route::get('/password-success', ['as'=>'passwordSuccess','uses'=>'ResetPasswordController@successPassword']);
+Route::get('/password-error', ['as'=>'passwordError','uses'=>'ResetPasswordController@errorPassword']);
+
+// POST 
+Route::post('/forgot-password/send-email', ['as' => 'sendEmail', 'uses' => 'ResetPasswordController@getResetToken']);
+Route::post('/post-password-reset', ['as'=>'postResetPassword','uses'=>'ResetPasswordController@postResetPassword']);
+
 Route::group( ['middleware' => ['web'] ], function(){
 
 

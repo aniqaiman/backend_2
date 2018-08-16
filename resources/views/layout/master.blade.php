@@ -24,6 +24,8 @@
     <!-- DataTables -->
     {!!Html::style('datatables/datatables.min.css')!!}
 
+    {!!Html::style('sweetalert2/dist/sweetalert2.min.css')!!}
+
     <!-- Theme style -->
     {!!Html::style('css/AdminLTE.min.css')!!}
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -101,7 +103,11 @@ desired effect
     {!!Html::script('datatables/datatables.min.js')!!}
     <!-- SweetAlert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {!!Html::script('sweetalert2/dist/sweetalert2.min.js')!!}
     
+    @include('sweet::alert')
+
     @yield('script')
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

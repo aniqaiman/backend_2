@@ -70,6 +70,10 @@
           </div>
           <!-- /.col -->
         </div>
+        <div>
+        <br>
+        <a href="{{route('forgotPassword')}}"><center>I forgot my password</center></a>
+      </div>
       </form>
     </div>
     <!-- /.login-box-body -->
