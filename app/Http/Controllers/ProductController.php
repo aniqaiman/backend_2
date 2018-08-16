@@ -38,6 +38,7 @@ class ProductController extends Controller
             $wastage["promo_wastage"] = 0;
 
         }
+        $wastage->buy_at_price = $request->price;
         $wastage->product_id = $request->product_id;
         $wastage["storage_wastage"] += $request->wastage;
         $wastage->save();
@@ -51,8 +52,9 @@ class ProductController extends Controller
         if (!$promo) {
             $promo = new Promotion;
             $promo["quantity"] = 0;
-
+ 
         }
+        $promo->buy_at_price = $request->price;  
         $promo->product_id = $request->product_id;
         $promo["quantity"] += $request->quantity;
         $promo->save();

@@ -146,7 +146,19 @@
                                         <td class="text-center">{{ $order["distance"] }} km</td>
                                         <td class="text-center">{{ $order["tonnage"] }} kg</td>
                                         <td class="text-center">RM {{ number_format($order["total_payout"], 2) }}</td>
-                                        <td class="text-center"></td>
+                                        <td class="text-center">
+                                            Warehouse
+                                            <a href='https://www.google.com/maps/search/?api=1&query=3.123093,101.468913' target="_blank">
+                                                <i class="fa fa-map-marker"></i>
+                                            </a>
+                                            <br>
+                                            to
+                                            <br>
+                                            {{ $order["user_address"] }}
+                                            <a href='https://www.google.com/maps/search/?api=1&query={{ $order["latitude"] }},{{ $order["longitude"] }}' target="_blank">
+                                                <i class="fa fa-map-marker"></i>
+                                            </a>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -200,7 +212,19 @@
                                         <td class="text-center">{{ $stock["distance"] }} km</td>
                                         <td class="text-center">{{ $stock["tonnage"] }} kg</td>
                                         <td class="text-center">RM {{ number_format($stock["total_payout"], 2) }}</td>
-                                        <td class="text-center"></td>
+                                        <td class="text-center">
+                                            {{ $order["user_address"] }}
+                                            <a href='https://www.google.com/maps/search/?api=1&query={{ $order["latitude"] }},{{ $order["longitude"] }}' target="_blank">
+                                                <i class="fa fa-map-marker"></i>
+                                            </a>
+                                            <br>
+                                            to
+                                            <br>
+                                            Warehouse
+                                            <a href='https://www.google.com/maps/search/?api=1&query=3.123093,101.468913' target="_blank">
+                                                <i class="fa fa-map-marker"></i>
+                                            </a>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
