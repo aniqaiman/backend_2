@@ -37,7 +37,7 @@ class ApiController extends Controller
 
             if (!$token = JWTAuth::attempt($credentials)) {
                 return response()->json([
-                    'message' => 'Your account is not activated yet. It currently being review by FoodRico team. You will be inform once it had been activated.',
+                    'message' => 'Your account is not verified yet. It is currently being reviewed. You will be contacted by foodrico soon.',
                 ], 401);
             }
         } catch (Exception $e) {
