@@ -102,6 +102,7 @@ class SellerController extends Controller
         $seller->bank_account_holder_name = $request->bank_account_holder_name;
         $seller->bank_account_number = $request->bank_account_number;
         $seller->display_picture = env('APP_PHOTO_URL').$imagePath;
+        $seller->profile_verified = 1;
         $seller->save();
 
         return response()->json([
