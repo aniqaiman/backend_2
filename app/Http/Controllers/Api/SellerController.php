@@ -60,6 +60,7 @@ class SellerController extends Controller
 
     public function update(Request $request)
     {
+        return response()->json(['message' => $request->hasFile('display_picture')], 403);
         $seller = JWTAuth::parseToken()->authenticate();
 
         if ($seller->company_registration_mykad_number !== $request->company_registration_mykad_number
@@ -76,6 +77,11 @@ class SellerController extends Controller
             ], 403);
         }
 
+        if ($request->hasFile('display_picture')) {
+            $file = $request->display_picture;
+            $path = $request->display_picture->store('images');
+        } 
+
         $seller->name = $request->name;
         $seller->company_name = $request->company_name;
         $seller->company_registration_mykad_number = $request->company_registration_mykad_number;
@@ -87,6 +93,7 @@ class SellerController extends Controller
         $seller->bank_name = $request->bank_name;
         $seller->bank_account_holder_name = $request->bank_account_holder_name;
         $seller->bank_account_number = $request->bank_account_number;
+        $seller->display_picture = $path;
         $seller->save();
 
         return response()->json([
