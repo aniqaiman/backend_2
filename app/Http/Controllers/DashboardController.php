@@ -14,12 +14,12 @@ class DashboardController extends Controller
 
     public function getDashboard(Request $request)
     {
-    	// Auth::user();
+    	Auth::user();
 
-    	// if (Auth::user()->group_id == 11 && Auth::user()->group_id == 21) 
-    	// {
-    	// 	return redirect
-    	// }
+    	if (Auth::user()->group_id == 11 || Auth::user()->group_id == 21) 
+    	{
+    		return redirect('http://member.foodrico.com/');
+    	}
     	
         return view('dashboard');
     }
