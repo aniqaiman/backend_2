@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtppro02.mschosting.com'),
+    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'no-reply@foodrico.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'foodricoindustries@gmail.com'),
         'name' => env('MAIL_FROM_NAME', 'Foodrico Team'),
     ],
 
@@ -92,9 +92,9 @@ return [
     |
     */
 
-    'username' => env('no-reply@foodrico.com'),
+    'username' => env('MAIL_USERNAME'),
 
-    'password' => env('NOREPLYFoodR!c0'),
+    'password' => env('MAIL_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------
