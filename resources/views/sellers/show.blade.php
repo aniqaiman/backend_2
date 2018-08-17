@@ -204,7 +204,7 @@
       <div class="box-header with-border">
           <h3 class="box-title">Seller Details</h3>
           <div class="pull-right box-tools">
-              <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit-seller">Edit</button>
+              <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit-seller">Edithuhu</button>
           </div>
       </div>
         <div class="box-body">
