@@ -22,10 +22,10 @@ class SupplyController extends Controller
     public function postSupplies(Request $request)
     {
         $user = JWTAuth::parseToken()->authenticate();
-        $user->supplies()->detach();
+        // $user->supplies()->detach();
 
         foreach ($request->all() as $supply) {
-            $user->supplies()->syncWithoutDetaching([$supply["product"]["id"] => [
+            $user->supplies()->save([$supply["product"]["id"] => [
                 'harvesting_period_start' => Carbon::parse($supply["harvestingPeriodStart"], 'UTC')->setTimezone('Asia/Kuala_Lumpur'),
                 'harvesting_period_end' => Carbon::parse($supply["harvestingPeriodEnd"], 'UTC')->setTimezone('Asia/Kuala_Lumpur'),
                 'harvest_frequency' => $supply["harvestFrequency"],
