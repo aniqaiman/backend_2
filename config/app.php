@@ -163,7 +163,7 @@ return [
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
-	Intervention\Image\ImageServiceProvider::class
+	    Intervention\Image\ImageServiceProvider::class
     ],
 
     /*
@@ -217,7 +217,7 @@ return [
         'Html' => 'Collective\Html\HtmlFacade',
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
-	'Image' => Intervention\Image\Facades\Image::class
+	    'Image' => Intervention\Image\Facades\Image::class
     ],
 
     'log' => env('APP_LOG', 'errorlog'),

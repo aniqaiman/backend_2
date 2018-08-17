@@ -24,7 +24,7 @@
         "tymon/jwt-auth": "1.0.0-rc.2",
         "uxweb/sweet-alert": "^1.4",
         "whoops/soap": "^1.0",
-	"intervention/image": "dev-master"
+	    "intervention/image": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
