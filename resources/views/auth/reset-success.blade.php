@@ -38,7 +38,7 @@
   </div>
   <!-- /.login-logo -->
   
-   <p><center>Password succesfully reset</center></p><center><p>Click <a href="http://front-end.foodrico.com">here</a> to login with new password</center></p>
+   <p><center>Password succesfully reset</center></p><center><p>Click <a href="http://back-end.foodrico.com">here</a> to login with new password</center></p>
   
   <!-- /.login-box-body -->
 </div>
