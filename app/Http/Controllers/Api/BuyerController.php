@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use JWTAuth;
 use Mail;
+use Carbon\Carbon;
+use Image;
+use Storage;
 
 class BuyerController extends Controller
 {
@@ -60,6 +63,7 @@ class BuyerController extends Controller
     public function update(Request $request)
     {
         $buyer = JWTAuth::parseToken()->authenticate();
+        $imagePath = $buyer->display_picture;
         
         if ($buyer->company_registration_mykad_number !== $request->company_registration_mykad_number
             && User::where('company_registration_mykad_number', $request->company_registration_mykad_number)->exists()) {
@@ -75,6 +79,16 @@ class BuyerController extends Controller
             ], 403);
         }
 
+        if ($request['display_picture'] != "") {
+            Storage::delete($buyer->display_picture);
+            $filename = 'image_'.str_replace(' ', '', $request['name']).'_'.Carbon::now().'.jpg';
+            $buyerImagePath = 'buyer-image/' . $filename;
+            $image_buyer = Image::make($request->display_picture)->orientate()->fit(500);
+            $image_buyer = $image_buyer->stream();
+            Storage::disk('s3')->put($buyerImagePath, $image_buyer->__toString());
+            $imagePath = $buyerImagePath;
+        } 
+
         $buyer->name = $request->name;
         $buyer->company_name = $request->company_name;
         $buyer->company_registration_mykad_number = $request->company_registration_mykad_number;
@@ -85,6 +99,8 @@ class BuyerController extends Controller
         $buyer->mobile_number = $request->mobile_number;
         $buyer->phone_number = $request->phone_number;
         $buyer->email = $request->email;
+        $buyer->display_picture = env('APP_PHOTO_URL').$imagePath;
+        $buyer->profile_verified = 1;
         $buyer->save();
 
         return response()->json([

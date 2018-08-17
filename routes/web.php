@@ -59,6 +59,9 @@ Route::prefix('users')
         Route::delete('sellers/{user_id}', 'SellerController@destroy')->name('sellers.destroy');
         Route::get('sellers/{user_id}/edit', 'SellerController@edit')->name('sellers.edit');
 
+        //faizal
+        Route::post('sellers/{seller_id}', 'SellerController@updateSeller')->name('updateSeller');
+
         // ------------------------------------------- Buyer ------------------------------------------- //
 
         Route::get('buyers', 'BuyerController@index')->name('buyers.index');

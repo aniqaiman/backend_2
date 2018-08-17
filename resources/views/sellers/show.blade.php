@@ -84,11 +84,129 @@
     <li class="active">Dashboard</li>
   </ol>
 </section>
+<div class="modal fade" id="edit-seller" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Edit Seller Profile</h4>
+            </div>
+
+            <form action="{{route('users.updateSeller', ['seller_id' => $seller->id])}}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                <input type="hidden" name="_token" value="eHuAiRCzweF0JaKinuZDtXmCybHMt10Yrha2I3JR">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label">Name:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="name" id="name" value="{{$seller->name}}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address" class="col-sm-3 control-label">Address:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="address" id="address" value="{{$seller->address}}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mobile_number" class="col-sm-3 control-label">Mobile Number:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="mobile_number" id="mobile_number" value="{{$seller->mobile_number}}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="col-sm-3 control-label">Email:</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" name="email" id="email" value="{{$seller->email}}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company_name" class="col-sm-3 control-label">Company Name:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="company_name" id="company_name" value="{{$seller->company_name}}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company_registration_mykad_number" class="col-sm-3 control-label">Company Registration/Mykad:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="company_registration_mykad_number" id="company_registration_mykad_number" value="{{$seller->company_registration_mykad_number}}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bussiness_hour" class="col-sm-3 control-label">Business Hour:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="bussiness_hour" id="bussiness_hour" value="{{$seller->bussiness_hour}}" placeholder="00:00 AM/PM - 00:00 AM/PM">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bank_name" class="col-sm-3 control-label">Bank Name:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="bank_name" id="bank_name" value="{{$seller->bank_name}}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bank_account_holder_name" class="col-sm-3 control-label">Bank Account Holder:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="bank_account_holder_name" id="bank_account_holder_name" value="{{$seller->bank_account_holder_name}}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bank_account_number" class="col-sm-3 control-label">Bank Account Number:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="bank_account_number" id="bank_account_number" value="{{$seller->bank_account_number}}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="driver_license_number" class="col-sm-3 control-label">Driver License Number:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="driver_license_number" id="driver_license_number" value="{{$seller->driver_license_number}}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lorry_roadtax_expiry" class="col-sm-3 control-label">Lorry Roadtax Expiry:</label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control" name="lorry_roadtax_expiry" id="lorry_roadtax_expiry" value="{{$seller->lorry_roadtax_expiry}}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lorry_plate_number" class="col-sm-3 control-label">Lorry Plate Number:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="lorry_plate_number" id="lorry_plate_number" value="{{$seller->lorry_plate_number}}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary col-sm-12">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <section class="content">
   <div class="row">
     <div class="col-md-12">
       <div class="box">
+      <div class="box-header with-border">
+          <h3 class="box-title">Seller Details</h3>
+          <div class="pull-right box-tools">
+              <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit-seller">Edit</button>
+          </div>
+      </div>
         <div class="box-body">
           <dl class="dl-horizontal">
             <dt>Name</dt>
@@ -110,6 +228,10 @@
             <dd>{{ $seller->mobile_number }}</dd>
             <dt>E-Mail Address</dt>
             <dd>{{ $seller->email }}</dd>
+            <dt>Address</dt>
+            <dd>{{ $seller->address }}</dd>
+            <dt>Company Name</dt>
+            <dd>{{ $seller->company_name }}</dd>
           </dl>
         </div>
       </div>
