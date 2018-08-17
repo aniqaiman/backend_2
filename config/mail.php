@@ -92,9 +92,9 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+    'username' => env('no-reply@foodrico.com'),
 
-    'password' => env('MAIL_PASSWORD'),
+    'password' => env('NOREPLYFoodR!c0'),
 
     /*
     |--------------------------------------------------------------------------
