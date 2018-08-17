@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'smtppro02.mschosting.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'wanmuz.ada@gmail.com'),
-        'name' => env('MAIL_FROM_NAME', 'Aniq Aiman'),
+        'address' => env('MAIL_FROM_ADDRESS', 'no-reply@foodrico.com'),
+        'name' => env('MAIL_FROM_NAME', 'Foodrico Team'),
     ],
 
     'stream' => [
