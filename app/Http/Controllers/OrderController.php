@@ -172,7 +172,9 @@ class OrderController extends Controller
             $newOrder["longitude"] = $order->user->longitude;
             $newOrder["tonnage"] = DB::table('order_product')->where('order_id', $order->id)->sum('quantity');
             $newOrder["distance"] = $order->distance;
-            $newOrder["total_payout"] = $order->distance * 0.2;
+            $newOrder["total_payout"] = DB::table('order_product')->where('order_id', $order->id)->sum('quantity') * 0.2;
+
+            
             
 
             array_push($orders, $newOrder);
@@ -204,7 +206,7 @@ class OrderController extends Controller
             $newStock["longitude"] = $stock->user->longitude;
             $newStock["tonnage"] = DB::table('product_stock')->where('stock_id', $stock->id)->sum('quantity');
             $newStock["distance"] = $stock->distance;
-            $newStock["total_payout"] = $stock->distance * 0.2;
+            $newStock["total_payout"] = DB::table('product_stock')->where('stock_id', $stock->id)->sum('quantity') * 0.2;
 
             array_push($stocks, $newStock);
             array_push($locations, $stock->user->latitude . "," . $stock->user->longitude);
