@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use JWTAuth;
+use DB;
 
 class SupplyController extends Controller
 {
@@ -24,15 +25,20 @@ class SupplyController extends Controller
         $user = JWTAuth::parseToken()->authenticate();
         $user->supplies()->detach();
 
-        foreach ($request->all() as $supply) {
-            $user->supplies()->syncWithoutDetaching([$supply["product"]["id"] => [
-                'harvesting_period_start' => Carbon::parse($supply["harvestingPeriodStart"], 'UTC')->setTimezone('Asia/Kuala_Lumpur'),
-                'harvesting_period_end' => Carbon::parse($supply["harvestingPeriodEnd"], 'UTC')->setTimezone('Asia/Kuala_Lumpur'),
-                'harvest_frequency' => $supply["harvestFrequency"],
-                'total_plants' => $supply["totalPlants"],
-                'total_farm_area' => $supply["totalFarmArea"],
-            ]]);
-        }
+        $supplies = $request["supplies"];
+
+            foreach ($supplies as $supply) 
+            {
+                $supply = DB::table('supplies')->insert([
+                    'product_id' => $supply["product_id"],
+                    'harvesting_period_start' => Carbon::parse($supply["harvesting_period_start"], 'UTC')->setTimezone('Asia/Kuala_Lumpur'),
+                    'harvesting_period_end' => Carbon::parse($supply["harvesting_period_end"], 'UTC')->setTimezone('Asia/Kuala_Lumpur'),
+                    'harvest_frequency' => $supply["harvest_frequency"],
+                    'total_plants' => $supply["total_plants"],
+                    'total_farm_area' => $supply["total_farm_area"],
+                    'user_id' => $user->id
+                ]);
+            }
 
         return response()->json([
             "data" => $user->supplies,

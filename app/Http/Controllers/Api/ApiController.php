@@ -40,6 +40,7 @@ class ApiController extends Controller
                     'message' => 'Your account is not verified yet. It is currently being reviewed. You will be contacted by foodrico soon.',
                 ], 401);
             }
+
         } catch (Exception $e) {
             return response()->json([
                 'message' => 'Failed to generate token.',

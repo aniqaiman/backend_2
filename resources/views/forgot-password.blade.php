@@ -18,6 +18,8 @@
   {!!Html::style('datatables/datatables.min.css')!!}
   <!-- Theme style -->
   {!!Html::style('css/AdminLTE.min.css')!!}
+
+  {!!Html::style('sweetalert2/dist/sweetalert2.min.css')!!}
   
   <!-- iCheck -->
   {!!Html::style('css/skin-green.min.css')!!}
@@ -75,6 +77,10 @@
   <!-- Bootstrap 3.3.7 -->
   {!!Html::script('js/bootstrap.min.js')!!}
 
+  {!!Html::script('sweetalert2/dist/sweetalert2.min.js')!!} 
+
+  @include('sweet::alert')
+
 <script>
   $('#send-email').on('submit',function(e){
     e.preventDefault();
@@ -85,21 +91,21 @@
 
     console.log(formData);
 
-    $.ajax(
-        {
-          url:"{{route('sendEmail')}}",
-          type: "POST",
-          data: formData,
-          async: false,
-          success: function(response)
-      {
-       console.log(response);
-       $("[data-dismiss = modal]").trigger({type: "click"});
-          swal('SUCCESS', 'Correct Email', 'success').then(function() {
-           window.location.replace("{{route('index')}}");
-         });
-       
-       },
+    $.ajax({
+      url: "{{route('sendEmail')}}",
+      type: "POST",
+      data: formData,
+      async: false,
+            success: function (msg) {
+              swal('SUCCESS', 'Email has been send', 'success').then(function() {
+               window.location.replace("{{route('index')}}");
+             });
+            },
+            error: function (xhr, status, error){ 
+              swal('DENIED',xhr.responseText);
+              console.log(xhr);
+              swal('DENIED', xhr.responseText, 'warning');
+            },
       cache: false,
       contentType: false,
       processData: false

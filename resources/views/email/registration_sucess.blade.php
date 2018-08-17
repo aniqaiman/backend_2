@@ -1,7 +1,8 @@
 <body>
     <div style="margin: 0 auto; background-color: #343a40; padding: 25px; padding-bottom: 10px; text-align: center; color: white; max-width: 670px;">
+        <a href="https://www.foodrico.com/">
         <img src="https://ninjavan.herokuapp.com/img/logo/logo-text.png" alt="Food Rico Logo" style="width: 190px; margin-top: 5px; margin-bottom: 15px;">
-
+        </a>
         <div style="background-color: white; border-radius: 3px; padding: 19px; text-align: left; color: black; margin-bottom: 5px;">
             <h1 style="margin-top: 0; text-align: center;">
                 FoodRico {{ $user->group->name }}
@@ -30,16 +31,21 @@
             <a href="https://www.facebook.com/pg/Foodricocom-179974779485327" style="text-decoration: none;">
                 <img src="https://ninjavan.herokuapp.com/img/icon/facebook.png" alt="FoodRico Facebook" width="19">
             </a>
-            <a href="https://api.whatsapp.com/send?phone=60163349412" style="text-decoration: none;">
+            <a href="https://api.whatsapp.com/send?phone=601126121237" style="text-decoration: none;">
                 <img src="https://ninjavan.herokuapp.com/img/icon/whatsapp.png" alt="FoodRico WhatsApp" width="19">
             </a>
         </div>
 
         <small>
             &copy; FoodRico {{ Carbon\Carbon::now()->format('Y') }}
-            <br />Seksyen U10,
-            <br />Shah Alam U10/32G,
-            <br />40150 Shah Alam, Selangor Darul Ehsan
+            <br />Foodrico Sdn Bhd,
+            <br />Club House, Sri Permata Condominium,
+            <br />Jalan Sultan Salahuddin Abdul Aziz Shah 9/6,
+            <br />Seksyen 9, 40100 Shah Alam, Selangor.
         </small>
     </div>
 </body>
+
+
+
+
