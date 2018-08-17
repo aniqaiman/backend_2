@@ -33,7 +33,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href=""><b>FOODRICO </b>Reset Password</a>
+    <a href=""><b>DWARKA </b>Reset Password</a>
   </div>
   <!-- /.login-logo -->
   

@@ -26,7 +26,8 @@ class SupplyController extends Controller
         $user->supplies()->detach();
 
         $supplies = $request["supplies"];
-
+dump($supplies);
+exit();
             foreach ($supplies as $supply) 
             {
                 $supply = DB::table('supplies')->insert([

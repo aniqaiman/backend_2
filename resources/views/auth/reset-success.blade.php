@@ -33,12 +33,12 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href=""><b>FOODRICO </b><br>
+    <a href=""><b>DWARKA </b><br>
     Reset Password</a>
   </div>
   <!-- /.login-logo -->
   
-   <p><center>Password succesfully reset</center></p><center><p>Click <a href="http://back-end.foodrico.com">here</a> to login with new password</center></p>
+   <p><center>Password succesfully reset</center></p><center><p>Click <a href="http://dwarka.foodrico.com">here</a> to login with new password</center></p>
   
   <!-- /.login-box-body -->
 </div>
