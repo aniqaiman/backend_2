@@ -87,7 +87,6 @@ $(document).ready(function()
         $.post("{{route('postResetPassword')}}", data, function(response)
         {
           if (response.status =="ok"){
-
             $(location).attr('href',  "{{route('passwordSuccess')}}");
           }
           else{
