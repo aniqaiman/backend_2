@@ -17,7 +17,7 @@
             </p>
 
             <div style="text-align: center;">
-                <a href="https://front-end.foodrico.com/auth/verify/{{ $user->activation_token }}" style="background-color: #77b55a; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; border: 1px solid #4b8f29; display: inline-block; cursor: pointer; color: #fff; font-size: 1.3em; padding: 10px 19px; text-decoration: none; font-weight: bold;">Verify Me Now</a>
+                <a href="https://member.foodrico.com/auth/verify/{{ $user->activation_token }}" style="background-color: #77b55a; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; border: 1px solid #4b8f29; display: inline-block; cursor: pointer; color: #fff; font-size: 1.3em; padding: 10px 19px; text-decoration: none; font-weight: bold;">Verify Me Now</a>
             </div>
 
             <p>
