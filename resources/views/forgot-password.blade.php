@@ -38,9 +38,9 @@
 <body class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
-      <a href="">
+      <a href="https://dwarka.foodrico.com">
         |
-        <b>Food</b>Rico</a> |
+        <b>Dwarka</b></a> |
       </div>
       <!-- /.login-logo -->
       <div class="login-box-body clearfix">
