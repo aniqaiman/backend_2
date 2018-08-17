@@ -37,7 +37,7 @@
     <div class="login-logo">
       <a href="../../index2.html">
         |
-        <b>Food</b>Rico</a> |
+        <b>Dwarka</b></a> |
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">

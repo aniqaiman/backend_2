@@ -36,7 +36,7 @@
 <div class="login-box">
   <div class="login-logo">
     <a href="">
-      <b>FOODRICO </b><br>
+      <b>DWARKA </b><br>
     Reset Password</a>
   </div>
   <!-- /.login-logo -->
