@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
-
+use Auth;
 class DashboardController extends Controller
 {
     public function __construct()
@@ -14,6 +14,13 @@ class DashboardController extends Controller
 
     public function getDashboard(Request $request)
     {
+    	// Auth::user();
+
+    	// if (Auth::user()->group_id == 11 && Auth::user()->group_id == 21) 
+    	// {
+    	// 	return redirect
+    	// }
+    	
         return view('dashboard');
     }
 }
