@@ -75,16 +75,17 @@
                             <div class="col-sm-9">
                                 <div class="input-group">
                                     <span class="input-group-addon">Grade A</span>
-                                    <input type="number" name="quantity_a" class="form-control" min="0" value="{{ $fruit->quantity_a }}" required />
+                                    <input type="number" name="quantity_a" class="form-control" min="0" value="{{ $fruit->quantity_a }}" readonly />
                                     <span class="input-group-addon">kg</span>
                                 </div>
                             </div>
                             <div class="col-sm-offset-3 col-sm-9">
                                 <div class="input-group">
                                     <span class="input-group-addon">Grade B</span>
-                                    <input type="number" name="quantity_b" class="form-control" min="0" value="{{ $fruit->quantity_b }}" required />
+                                    <input type="number" name="quantity_b" class="form-control" min="0" value="{{ $fruit->quantity_b }}" readonly />
                                     <span class="input-group-addon">kg</span>
                                 </div>
+                                <span><small>*total value from inventory management</small></span>
                             </div>
                         </div>
 
